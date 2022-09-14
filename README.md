@@ -1,1 +1,0 @@
-Empanada de carne
