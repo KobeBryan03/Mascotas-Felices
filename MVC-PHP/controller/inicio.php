@@ -28,7 +28,11 @@ if($_POST["inicio"]){
 		}
 		/// si es un vendedor
 		elseif($_SESSION['tipo'] == 2){
-			header("Location: ../model/usuario/index1.php"); 
+			header("Location: ../model/usuario/index.php"); 
+			exit();		
+		}
+		elseif($_SESSION['tipo'] == 3){
+			header("Location: ../model/veterinario/index.php"); 
 			exit();		
 		}
 		

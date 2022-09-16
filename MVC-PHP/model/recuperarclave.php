@@ -47,7 +47,7 @@ if($_POST["inicio"])
             <body>
                 <div class="login-box">
                     <!--crea una caja imaginaria-->
-                    <img src="../controller/image/logo.png" class="avatar" alt="Avatar Image">
+                    <img src="../controller/image/moon (1).png" class="avatar" alt="Avatar Image">
 
                         <!--insertamos una imagen-->
     
