@@ -80,7 +80,7 @@ if (isset($_POST['btncerrar'])) {
 					<p>Id</p>
 					<input type="text" readonly />
 				</div>
-				<div class="formulario_tipusu">
+				<div class="formulario_info">
 					<p>Tipo Usuario</p>
 					<input type="text" name="tipo_usu" />	
 				</div>

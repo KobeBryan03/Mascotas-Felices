@@ -49,24 +49,17 @@ if (isset($_POST['btncerrar'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="./registro_user.php">
+                        <span class="text-item">Registro Usuario</span>
+                        <span class="down-item"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./registro_animal.php">
                         <span class="text-item">Registro Mascota</span>
                         <span class="down-item"></span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <span class="text-item">Registro Propietario</span>
-                        <span class="down-item"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="text-item">Registro Veterinario</span>
-                        <span class="down-item"></span>
-                    </a>
-                </li>
-                <li>
             </ul>
         </nav>
     </body>

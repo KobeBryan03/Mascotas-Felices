@@ -44,6 +44,7 @@ img {
 }
 
 .session_container .session_buttons input {
+  cursor: pointer;
   margin-right: 10px;
   background-color: #efefef;
   border: none;
@@ -89,23 +90,31 @@ img {
   font-size: 20px;
 }
 
-.formulario_tipusu {
+.formulario_info {
   padding-bottom: 10px;
 }
 
-.formulario_tipusu input {
+.formulario_info input {
   width: 300px;
   height: 30px;
   border-style: 1px solid black;
   border-radius: 10px;
 }
 
-.formulario_tipusu p {
+.formulario_info select {
+  width: 300px;
+  height: 30px;
+  border-style: 1px solid black;
+  border-radius: 10px;
+}
+
+.formulario_info p {
   font-size: 20px;
 }
 
 .formulario_button {
   display: flex;
+  margin-bottom: 30px;
   justify-content: center;
 }
 

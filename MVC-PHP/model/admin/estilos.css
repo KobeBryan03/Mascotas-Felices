@@ -44,6 +44,7 @@ img {
 }
 
 .session_container .session_buttons input {
+  cursor: pointer;
   margin-right: 10px;
   background-color: #efefef;
   border: none;

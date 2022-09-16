@@ -8,9 +8,9 @@ if($_POST["inicio"]){
 	
 	
 	/// consultamos el usuario segun el usuario y la clave
-	$con="select * from usuarios where email = '$usuario' and password = '$clave'"; 	
-	$query=mysqli_query($mysqli, $con);
-	$fila=mysqli_fetch_assoc($query);
+	$con = "select * from usuarios where email = '$usuario' and password = '$clave' AND `estado` = 1;";
+	$query = mysqli_query($mysqli, $con);
+	$fila = mysqli_fetch_assoc($query);
 	
 	if($fila){		
 		/// si el usuario y la clave son correctas, creamos las sesiones 
