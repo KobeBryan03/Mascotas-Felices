@@ -47,7 +47,7 @@ if ((isset($_POST["guardar"])) && ($_POST["guardar"] == "frm_usuario"))
 
 <?php 
 	// Realizamos la consulta para la tabla tipos de usuarios
-	$sql_tipo_usu = "SELECT * FROM `tipo_usuario` WHERE id_tipo_usuario;";
+	$sql_tipo_usu = "SELECT * FROM `tipo_usuario` WHERE id_tipo_usuario > 1;";
 	$query_tipo_usu = mysqli_query($mysqli, $sql_tipo_usu);
 	$row_tipo_usu = mysqli_fetch_assoc($query_tipo_usu);
 
@@ -66,10 +66,6 @@ if (isset($_POST['btncerrar'])) {
 
 ?>
 
-</div>
-
-</div>
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -77,7 +73,7 @@ if (isset($_POST['btncerrar'])) {
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="estilos2.css">
-		<title>taller</title>
+		<title>Registro Usuario</title>
 	</head>
 	<body>
 		<div class="session_container">

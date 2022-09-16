@@ -77,7 +77,7 @@ if (isset($_POST['btncerrar'])) {
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="estilos2.css">
-		<title>taller</title>
+		<title>Registro Usuario</title>
 	</head>
 	<body>
 		<div class="session_container">
