@@ -8,28 +8,6 @@ $usua = mysqli_fetch_assoc($usuarios);
 ?>
 
 <?php 
-if ((isset($_POST["guardar"])) && ($_POST["guardar"] == "frm_usuario"))
-{
-	if ($_POST['uiduser'] == "" || $_POST['mname'] == "" || $_POST['mcolor'] == "" || $_POST['tipo_masc'] == "" || $_POST['estado_masc'] == "") {
-		echo '<script>alert("Campos vacíos");</script>';
-		echo '<script>window.location="registro_animal.php"</script>';
-	}
-
-	else {
-		$var1 = $_POST['uiduser'];
-		$var2 = $_POST['mname'];
-		$var3 = $_POST['mcolor'];
-		$var4 = $_POST['tipo_masc'];
-		$var5 = $_POST['estado_masc'];
-		$sql_masc = "INSERT INTO `mascotas_clientes`(`id_propietario`, `tipo_mascota`, `nombre_mascota`, `color`, `estado`) VALUES ('$var1', '$var4', '$var2', '$var3', '$var5')";
-		$reg_masc = mysqli_query($mysqli, $sql_masc);
-		echo '<script>alert("Registro Exitoso");</script>';
-		echo '<script>window.location="registro_animal.php"</script>';
-	}
-}
-?>
-
-<?php 
 	// Realizamos la consulta para la tabla tipos de usuarios
 	$sql_tipo_masc = "SELECT * FROM `tipo_mascota`;";
 	$query_tipo_masc = mysqli_query($mysqli, $sql_tipo_masc);
@@ -77,22 +55,22 @@ if (isset($_POST['btncerrar'])) {
 			<form name="frm_usuario" method="POST" autocomplete="off" />
 				<div class="formulario_id">
 					<p>Id Mascota</p>
-					<input type="text" readonly />
+					<input type="text" name="id_usu" id="idusu" value="" />
 				</div>
 				<div class="formulario_info">
 					<p>Id Propietario</p>
-					<input type="number" name="uiduser" />	
+					<input type="number" name="uiduser" id="uiduser" value="" />	
 				</div>
 				<div class="formulario_info">
 					<p>Nombre Mascota</p>
-					<input type="text" name="mname" />	
+					<input type="text" name="mname" id="mname" value="" />	
 				</div>
 				<div class="formulario_info">
 					<p>Color</p>
-					<input type="text" name="mcolor" />	
+					<input type="text" name="mcolor" id="mcolor" value=""/>	
 				</div>
 				<div class="formulario_info">
-					<select name="tipo_masc">
+					<select name="tipo_masc" id="tipo_masc">
 						<option value="">Seleccione Tipo de Mascota...</option>
 							<?php 
 								do {
@@ -103,7 +81,7 @@ if (isset($_POST['btncerrar'])) {
 					</select>	
 				</div>
 				<div class="formulario_info">
-					<select name="estado_masc">
+					<select name="estado_masc" id="estado_masc">
 						<option value="">Seleccione Estado de la Mascota...</option>
 						<?php 
 								do {
@@ -114,10 +92,86 @@ if (isset($_POST['btncerrar'])) {
 					</select>	
 				</div>
 				<div class="formulario_button">
+					<!-- Save button -->
 					<input type="submit" value="Guardar" name="btn-guardar" />
-					<input type="hidden" name="guardar" value="frm_usuario" />
+					<!-- search button -->
+					<input type="submit" value="Buscar" name="btn-buscar" />
+					<!-- Edit button -->
+					<input type="submit" value="Editar" name="btn-editar" />
+					<!-- Delete button -->
+					<input type="submit" value="Eliminar" name="btn-eliminar" />
 				</div>
 			</form>
 		</div>
 	</body>
 </html>
+
+<?php 
+if (isset($_POST["btn-guardar"]))
+{
+	if ($_POST['uiduser'] == "" || $_POST['mname'] == "" || $_POST['mcolor'] == "" || $_POST['tipo_masc'] == "" || $_POST['estado_masc'] == "") {
+		echo '<script>alert("Campos vacíos");</script>';
+		echo '<script>window.location="registro_animal.php"</script>';
+	}
+
+	else {
+		$var1 = $_POST['uiduser'];
+		$var2 = $_POST['mname'];
+		$var3 = $_POST['mcolor'];
+		$var4 = $_POST['tipo_masc'];
+		$var5 = $_POST['estado_masc'];
+		$sql_masc = "INSERT INTO `mascotas_clientes`(`id_propietario`, `tipo_mascota`, `nombre_mascota`, `color`, `estado`) VALUES ('$var1', '$var4', '$var2', '$var3', '$var5')";
+		$reg_masc = mysqli_query($mysqli, $sql_masc);
+		echo '<script>alert("Registro Exitoso");</script>';
+		echo '<script>window.location="registro_animal.php"</script>';
+	}
+}else if (isset($_POST["btn-buscar"]))
+{
+	$id_us = $_POST['uiduser'];
+	$id_masc = $_POST['id_usu'];
+	$sql_idusu = "SELECT * FROM `mascotas_clientes` WHERE `id_propietario` = '$id_us' OR `id_mascota` = '$id_masc';";
+	$id = mysqli_query($mysqli, $sql_idusu);
+	$row_id = mysqli_fetch_assoc($id);
+
+	if ($row_id) {
+		echo "<script> let id_prop = '" . $row_id['id_propietario']  . "'</script>";
+		echo "<script> let id_masc= '" . $row_id['id_mascota']  . "'</script>";
+		echo "<script> let mname = '" . $row_id['nombre_mascota']  . "'</script>";
+		echo "<script> let mcolor = '" . $row_id['color']  . "'</script>";
+		echo "<script> let type = '" . $row_id['tipo_mascota']  . "'</script>";
+		echo "<script> let status = '" . $row_id['estado']  . "'</script>";
+		echo "<script> document.getElementById('idusu').value = id_masc; </script>";
+		echo "<script> document.getElementById('uiduser').value = id_prop; </script>";
+		echo "<script> document.getElementById('mname').value = mname; </script>";
+		echo "<script> document.getElementById('mcolor').value = mcolor; </script>";
+		echo "<script> document.getElementById('tipo_masc').value = type; </script>";
+		echo "<script> document.getElementById('estado_masc').value = status; </script>";
+	}
+
+	elseif ($_POST['uiduser'] == "") {
+		echo '<script>alert("Campos vacíos o id no exíste");</script>';
+		echo '<script>window.location="registro_animal.php";</script>';
+	}
+}else if (isset($_POST["btn-editar"]))
+{
+	$var1 = $_POST['id_usu'];
+	$var2 = $_POST['uiduser'];
+	$var3 = $_POST['mname'];
+	$var4 = $_POST['mcolor'];
+	$var5 = $_POST['tipo_masc'];
+	$var6 = $_POST['estado_masc'];
+	$sql_edit = "UPDATE `mascotas_clientes` SET `tipo_mascota`='$var5',`nombre_mascota`='$var3',`color`='$var4',`estado`='$var6' WHERE `id_propietario` = '$var2' OR `id_mascota` = '$var1';";
+	$edit = mysqli_query($mysqli, $sql_edit);
+	echo '<script>alert("Los cambios fueron realizados Exitosamente");</script>';
+	echo '<script>window.location="registro_animal.php"</script>';
+
+}else if (isset($_POST["btn-eliminar"]))
+{
+	$var1 = $_POST['id_usu'];
+	$var2 = $_POST['uiduser'];
+	$sql_delete = "DELETE FROM `mascotas_clientes` WHERE `id_propietario` = '$var2' OR `id_mascota` = '$var1';";
+	$delete = mysqli_query($mysqli, $sql_delete);
+	echo '<script>alert("Se ha eliminado correctamente");</script>';
+	echo '<script>window.location="registro_animal.php"</script>';
+}
+?>

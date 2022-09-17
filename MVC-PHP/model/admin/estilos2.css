@@ -79,6 +79,9 @@ img {
 
 .formulario_id {
   padding-bottom: 5px;
+  position: relative;
+  left: 50px;
+  margin: 0 auto;
 }
 .formulario_id input {
   width: 300px;
@@ -92,6 +95,10 @@ img {
 
 .formulario_info {
   padding-bottom: 10px;
+  position: relative;
+  left: 50px;
+  display: flex;
+  flex-direction: column;
 }
 
 .formulario_info input {
@@ -119,10 +126,12 @@ img {
 }
 
 .formulario_button input {
+  cursor: pointer;
   background-color: #3454d1;
   border: none;
   border-radius: 20px;
   width: 100px;
   height: 40px;
+  margin-right: 10px;
   color: #efefef;
 }

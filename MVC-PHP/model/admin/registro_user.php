@@ -8,44 +8,6 @@ $usua = mysqli_fetch_assoc($usuarios);
 ?>
 
 <?php 
-if ((isset($_POST["guardar"])) && ($_POST["guardar"] == "frm_usuario"))
-{
-	$tip_us = $_POST['tipo_usu'];
-	$docu_user = $_POST['udocument'];
-	$sql_val = "SELECT * FROM `usuarios` WHERE `tipo_usuario` = '$tip_us' AND `numero_tar`= '$docu_user';";
-	$val = mysqli_query($mysqli, $sql_val);
-	$row_val = mysqli_fetch_assoc($val);
-
-	if ($row_val) {
-		echo '<script>alert("Este usuario ya se encuentra registrado");</script>';
-		echo '<script>window.location="registro_user.php"</script>';
-	}
-
-	elseif ($_POST['udocument'] == "" || $_POST['uname'] == "" || $_POST['ulast_name'] == "" || $_POST['uaddress'] == "" || $_POST['uemail'] == "" || $_POST['uphone'] == "" || $_POST['upassword'] == "" || $_POST['tipo_usu'] == "" || $_POST['estado_usu'] == "") {
-		echo '<script>alert("Campos vacíos");</script>';
-		echo '<script>window.location="registro_user.php"</script>';
-	}
-
-	else {
-		$var1 = $_POST['udocument'];
-		$var2 = $_POST['uname'];
-		$var3 = $_POST['ulast_name'];
-		$var4 = $_POST['uaddress'];
-		$var5 = $_POST['uemail'];
-		$var6 = $_POST['uphone'];
-		$var7 = $_POST['upassword'];
-		$var8 = $_POST['tipo_usu'];
-		$var9 = $_POST['estado_usu'];
-		$sql_usu = "INSERT INTO `usuarios`(`nombre`, `apellido`, `direccion`, `email`, `tipo_usuario`, `numero_tar`, `estado`, `password`, `telefono`) VALUES ('$var2', '$var3', '$var4', '$var5', '$var8', '$var1', '$var9', '$var7', '$var6')";
-		$reg_user = mysqli_query($mysqli, $sql_usu);
-		echo '<script>alert("Registro Exitoso");</script>';
-		echo '<script>window.location="registro_user.php"</script>';
-	}
-}
-
-?>
-
-<?php 
 	// Realizamos la consulta para la tabla tipos de usuarios
 	$sql_tipo_usu = "SELECT * FROM `tipo_usuario` WHERE id_tipo_usuario;";
 	$query_tipo_usu = mysqli_query($mysqli, $sql_tipo_usu);
@@ -99,38 +61,38 @@ if (isset($_POST['btncerrar'])) {
 			<form name="frm_usuario" method="POST" autocomplete="off" />
 				<div class="formulario_id">
 					<p>Id</p>
-					<input type="text" readonly />
+					<input type="number" name="id_usu" id="idusu" value="" />
 				</div>
 				<div class="formulario_info">
 					<p>Numero Documento</p>
-					<input type="number" name="udocument" />	
+					<input type="number" name="udocument" id="udocument" value=""/>	
 				</div>
 				<div class="formulario_info">
 					<p>Nombre</p>
-					<input type="text" name="uname" />	
+					<input type="text" name="uname" id="uname" value=""/>	
 				</div>
 				<div class="formulario_info">
 					<p>Apellido</p>
-					<input type="text" name="ulast_name" />	
+					<input type="text" name="ulast_name" id="ulast_name" value=""/>	
 				</div>
 				<div class="formulario_info">
 					<p>Direccion</p>
-					<input type="text" name="uaddress" />	
+					<input type="text" name="uaddress" id="uaddress" value=""/>	
 				</div>
 				<div class="formulario_info">
 					<p>Email</p>
-					<input type="email" name="uemail" />	
+					<input type="email" name="uemail" id="uemail" value=""/>	
 				</div>
 				<div class="formulario_info">
 					<p>Numero Teléfono</p>
-					<input type="number" name="uphone" />	
+					<input type="number" name="uphone" id="uphone" value=""/>	
 				</div>
 				<div class="formulario_info">
 					<p>Contraseña</p>
-					<input type="password" name="upassword" />	
+					<input type="password" name="upassword" id="upassword" value=""/>	
 				</div>
 				<div class="formulario_info">
-					<select name="tipo_usu">
+					<select name="tipo_usu" id="tipo_usu">
 						<option value="">Seleccione Tipo de Usuario...</option>
 							<?php 
 								do {
@@ -141,7 +103,7 @@ if (isset($_POST['btncerrar'])) {
 					</select>	
 				</div>
 				<div class="formulario_info">
-					<select name="estado_usu">
+					<select name="estado_usu" id="estado_usu">
 						<option value="">Seleccione Estado del Usuario...</option>
 						<?php 
 								do {
@@ -152,10 +114,110 @@ if (isset($_POST['btncerrar'])) {
 					</select>	
 				</div>
 				<div class="formulario_button">
+					<!-- Save button -->
 					<input type="submit" value="Guardar" name="btn-guardar" />
-					<input type="hidden" name="guardar" value="frm_usuario" />
+					<!-- search button -->
+					<input type="submit" value="Buscar" name="btn-buscar" />
+					<!-- Edit button -->
+					<input type="submit" value="Editar" name="btn-editar" />
+					<!-- Delete button -->
+					<input type="submit" value="Eliminar" name="btn-eliminar" />
 				</div>
 			</form>
 		</div>
 	</body>
 </html>
+<?php 
+if (isset($_POST["btn-guardar"]))
+{
+	$tip_us = $_POST['tipo_usu'];
+	$docu_user = $_POST['udocument'];
+	$sql_val = "SELECT * FROM `usuarios` WHERE `tipo_usuario` = '$tip_us' AND `numero_tar`= '$docu_user';";
+	$val = mysqli_query($mysqli, $sql_val);
+	$row_val = mysqli_fetch_assoc($val);
+
+	if ($row_val) {
+		echo '<script>alert("Este usuario ya se encuentra registrado");</script>';
+		echo '<script>window.location="registro_user.php"</script>';
+	}
+
+	elseif ($_POST['udocument'] == "" || $_POST['uname'] == "" || $_POST['ulast_name'] == "" || $_POST['uaddress'] == "" || $_POST['uemail'] == "" || $_POST['uphone'] == "" || $_POST['upassword'] == "" || $_POST['tipo_usu'] == "" || $_POST['estado_usu'] == "") {
+		echo '<script>alert("Campos vacíos");</script>';
+		echo '<script>window.location="registro_user.php"</script>';
+	}
+
+	else {
+		$var1 = $_POST['udocument'];
+		$var2 = $_POST['uname'];
+		$var3 = $_POST['ulast_name'];
+		$var4 = $_POST['uaddress'];
+		$var5 = $_POST['uemail'];
+		$var6 = $_POST['uphone'];
+		$var7 = $_POST['upassword'];
+		$var8 = $_POST['tipo_usu'];
+		$var9 = $_POST['estado_usu'];
+		$sql_usu = "INSERT INTO `usuarios`(`nombre`, `apellido`, `direccion`, `email`, `tipo_usuario`, `numero_tar`, `estado`, `password`, `telefono`) VALUES ('$var2', '$var3', '$var4', '$var5', '$var8', '$var1', '$var9', '$var7', '$var6')";
+		$reg_user = mysqli_query($mysqli, $sql_usu);
+		echo '<script>alert("Registro Exitoso");</script>';
+		echo '<script>window.location="registro_user.php"</script>';
+	}
+}else if (isset($_POST["btn-buscar"]))
+{
+	$id_us = $_POST['id_usu'];
+	$sql_idusu = "SELECT * FROM `usuarios` WHERE `id_usuario` = '$id_us';";
+	$id = mysqli_query($mysqli, $sql_idusu);
+	$row_id = mysqli_fetch_assoc($id);
+
+	if ($row_id) {
+		echo "<script> let id = '" . $id_us  . "'</script>";
+		echo "<script> let card = '" . $row_id['numero_tar']  . "'</script>";
+		echo "<script> let name = '" . $row_id['nombre']  . "'</script>";
+		echo "<script> let lastname = '" . $row_id['apellido']  . "'</script>";
+		echo "<script> let address = '" . $row_id['direccion']  . "'</script>";
+		echo "<script> let email = '" . $row_id['email']  . "'</script>";
+		echo "<script> let phone = '" . $row_id['telefono']  . "'</script>";
+		echo "<script> let password = '" . $row_id['password']  . "'</script>";
+		echo "<script> let type = '" . $row_id['tipo_usuario']  . "'</script>";
+		echo "<script> let status = '" . $row_id['estado']  . "'</script>";
+		echo "<script> document.getElementById('idusu').value = id; </script>";
+		echo "<script> document.getElementById('udocument').value = card; </script>";
+		echo "<script> document.getElementById('uname').value = name; </script>";
+		echo "<script> document.getElementById('ulast_name').value = lastname; </script>";
+		echo "<script> document.getElementById('uaddress').value = address; </script>";
+		echo "<script> document.getElementById('uemail').value = email; </script>";
+		echo "<script> document.getElementById('uphone').value = phone; </script>";
+		echo "<script> document.getElementById('upassword').value = password; </script>";
+		echo "<script> document.getElementById('tipo_usu').value = type; </script>";
+		echo "<script> document.getElementById('estado_usu').value = status; </script>";
+	}
+
+	elseif ($_POST['id_tipousu'] == "") {
+		echo '<script>alert("Campos vacíos o id no exíste");</script>';
+		echo '<script>window.location="registro_user.php";</script>';
+	}
+}else if (isset($_POST["btn-editar"]))
+{
+	$var1 = $_POST['udocument'];
+	$var2 = $_POST['uname'];
+	$var3 = $_POST['ulast_name'];
+	$var4 = $_POST['uaddress'];
+	$var5 = $_POST['uemail'];
+	$var6 = $_POST['uphone'];
+	$var7 = $_POST['upassword'];
+	$var8 = $_POST['tipo_usu'];
+	$var9 = $_POST['estado_usu'];
+	$var10 = $_POST['id_usu'];
+	$sql_edit = "UPDATE `usuarios` SET `nombre`='$var2',`apellido`='$var3',`direccion`='$var4',`email`='$var5',`tipo_usuario`='$var8',`numero_tar`='$var1',`estado`='$var9',`password`='$var7',`telefono`='$var6' WHERE `id_usuario` = '$var10';";
+	$edit = mysqli_query($mysqli, $sql_edit);
+	echo '<script>alert("Los cambios fueron realizados Exitosamente");</script>';
+	echo '<script>window.location="registro_user.php"</script>';
+
+}else if (isset($_POST["btn-eliminar"]))
+{
+	$var1 = $_POST['id_usu'];
+	$sql_delete = "DELETE FROM `usuarios` WHERE `id_usuario` = '$var1';";
+	$delete = mysqli_query($mysqli, $sql_delete);
+	echo '<script>alert("Se ha eliminado correctamente");</script>';
+	echo '<script>window.location="registro_user.php"</script>';
+}
+?>
