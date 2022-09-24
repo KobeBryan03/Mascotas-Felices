@@ -89,7 +89,7 @@ if (isset($_POST['btncerrar'])) {
 							<option value="<?php echo($row_estado['id_estado'])?>"><?php echo($row_estado['estado'])?></option>
 							<?php	}while($row_estado = mysqli_fetch_assoc($query_estado));
 							?>
-					</select>	
+					</select>
 				</div>
 				<div class="formulario_button">
 					<!-- Save button -->

@@ -21,7 +21,7 @@ if (isset($_POST['btncerrar'])) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="estilos.css">
-        <title>Panel</title>
+        <title>Panel Usuario</title>
     </head>
 
     <body>
@@ -43,7 +43,7 @@ if (isset($_POST['btncerrar'])) {
         <nav class="navegacion">
             <ul class="menu wrapper">
                 <li>
-                    <a href="#">
+                    <a href="./listado_mascotas.php">
                         <span class="text-item">Consultar Mascota</span>
                         <span class="down-item"></span>
                     </a>

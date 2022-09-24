@@ -131,3 +131,11 @@ img {
   margin-right: 10px;
   color: #efefef;
 }
+
+.tabla, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.tabla th {
+  padding: 10px;
+}

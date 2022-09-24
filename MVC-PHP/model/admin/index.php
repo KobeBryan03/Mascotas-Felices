@@ -60,6 +60,24 @@ if (isset($_POST['btncerrar'])) {
                         <span class="down-item"></span>
                     </a>
                 </li>
+                <li>
+                    <a href="./registro_medicamento.php">
+                        <span class="text-item">Registrar Medicamento</span>
+                        <span class="down-item"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./registro_afiliacion.php">
+                        <span class="text-item">Registrar Afiliación</span>
+                        <span class="down-item"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./listado_mascotas.php">
+                        <span class="text-item">Listado Mascotas</span>
+                        <span class="down-item"></span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </body>
