@@ -9,11 +9,13 @@ $usua = mysqli_fetch_assoc($usuarios);
 
 <?php 
 	// Realizamos la consulta para la tabla estados
-	$sql_estados = "SELECT mascotas_clientes.id_mascota, usuarios.nombre, tipo_mascota.tipo_masc, mascotas_clientes.nombre_mascota, mascotas_clientes.color, estados.estado
-	FROM mascotas_clientes
-	INNER JOIN usuarios ON mascotas_clientes.id_propietario = usuarios.id_usuario
-	INNER JOIN tipo_mascota ON mascotas_clientes.tipo_mascota = tipo_mascota.id_tipo_masc
-	INNER JOIN estados ON mascotas_clientes.estado = estados.id_estado;";
+	$sql_estados = "select distinct mascotas_clientes.id_mascota, visitas.id_veterinario, usuarios.nombre, tipo_mascota.tipo_masc, mascotas_clientes.nombre_mascota, mascotas_clientes.color, estados.estado
+	from mascotas_clientes
+	inner join usuarios on mascotas_clientes.id_propietario = usuarios.id_usuario
+	inner join tipo_mascota on mascotas_clientes.tipo_mascota = tipo_mascota.id_tipo_masc
+	inner join estados on mascotas_clientes.estado = estados.id_estado
+	inner join visitas
+	where usuarios.id_usuario;";
 	$query_estado = mysqli_query($mysqli, $sql_estados);
 	$row_estado = mysqli_fetch_assoc($query_estado);
 ?>
@@ -61,6 +63,7 @@ if (isset($_POST['btncerrar'])) {
 				<table class="tabla">
 					<tr>
 						<th>Id</th>
+						<th>Id Veterinario</th>
 						<th>Propietario</th>
 						<th>Especie</th>
 						<th>Nombre</th>
@@ -72,6 +75,7 @@ if (isset($_POST['btncerrar'])) {
 					?>
 					<tr>
 						<th><?php echo($row_estado['id_mascota'])?></th>
+						<th><?php echo($row_estado['id_veterinario'])?></th>
 						<th><?php echo($row_estado['nombre'])?></th>
 						<th><?php echo($row_estado['tipo_masc'])?></th>
 						<th><?php echo($row_estado['nombre_mascota'])?></th>

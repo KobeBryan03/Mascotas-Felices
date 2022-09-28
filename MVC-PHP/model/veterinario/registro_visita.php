@@ -64,7 +64,7 @@ if (isset($_POST['btncerrar'])) {
 					<input type="text" name="id_mascota" id="idmascota" value=""/>	
 				</div>
 				<div class="formulario_info">
-					<p>Id Propietario</p>
+					<p>Id Veterinario</p>
 					<input type="text" name="id_propietario" id="idpropietario" value=""/>	
 				</div>	
 				<div class="formulario_info">
@@ -137,7 +137,7 @@ if (isset($_POST["btn-guardar"]))
 		$rec = $_POST['recomendaciones'];
 		$cost = $_POST['costo'];
 		$estado = $_POST['estado_masc'];
-		$sql_visita = "INSERT INTO `visitas`(`fecha_visita`, `id_propietario`, `id_mascota`, `estado`, `temperatura`, `frecuencia_car`, `recomendaciones`, `costo_visita`) VALUES ('$fecha','$id_prop','$id_masc','$estado','$temp','$frec','$rec','$cost')";
+		$sql_visita = "INSERT INTO `visitas`(`fecha_visita`, `id_veterinario`, `id_mascota`, `estado`, `temperatura`, `frecuencia_car`, `recomendaciones`, `costo_visita`) VALUES ('$fecha','$id_prop','$id_masc','$estado','$temp','$frec','$rec','$cost')";
 		$save_visita = mysqli_query($mysqli, $sql_visita);
 		echo '<script>alert("Visita Exitosa");</script>';
 		echo '<script>window.location="registro_visita.php"</script>';
@@ -152,7 +152,7 @@ if (isset($_POST["btn-guardar"]))
 	if ($row_idafiliacion) {
 		echo "<script> let frecuencia = '" . $row_idafiliacion['frecuencia_car']  . "'</script>";
 		echo "<script> let fechav = '" . $row_idafiliacion['fecha_visita']  . "'</script>";
-		echo "<script> let idprop = '" . $row_idafiliacion['id_propietario']  . "'</script>";
+		echo "<script> let idprop = '" . $row_idafiliacion['id_veterinario']  . "'</script>";
 		echo "<script> let idmasc = '" . $row_idafiliacion['id_mascota']  . "'</script>";
 		echo "<script> let estado = '" . $row_idafiliacion['estado']  . "'</script>";
 		echo "<script> let temp = '" . $row_idafiliacion['temperatura']  . "'</script>";
